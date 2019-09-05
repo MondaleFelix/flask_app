@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from random import choice
 
 app = Flask(__name__)
@@ -18,6 +18,11 @@ def get_horoscope():
 	prediction = choice(predictions)
 	return f'{prediction}'
 
+@app.route('/')
+def index():
+    """Show the homepage and ask the user's name."""
+    return render_template('index.html')
 
 if __name__ == "__main__":
 	app.run(debug = True)
+
