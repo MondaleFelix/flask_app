@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from random import choice
 
 app = Flask(__name__)
@@ -9,8 +9,9 @@ predictions = ["You will get hit by a car today", "You will get food poisoning f
 
 @app.route("/compliment")
 def get_compliment():
+	name = request.args.get('name')
 	compliment = choice(compliments)
-	return f'Hello there, user! You are so {compliment}'
+	return f'Hello there, {name}! You are so {compliment}!'
 
 @app.route("/horoscope")
 def get_horoscope():
